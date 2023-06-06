@@ -30,7 +30,6 @@ class ActividadController extends Controller
     public function store(Request $request)
     {
         $actividad = new Actividad();
-        $actividad->id = $request->input('id');
         $actividad->descripcion = $request->input('descripcion');
         $actividad->nota = $request->input('nota');
         $actividad->codigoEstudiante = $request->input('codigoEstudiante');

@@ -45,9 +45,9 @@ class EstudianteController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($codigo)
     {
-        $estudiante = Estudiante::find($id);
+        $estudiante = Estudiante::find($codigo);
         return response(json_encode([
             "data" => $estudiante
         ]));
@@ -60,15 +60,14 @@ class EstudianteController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $codigo)
     {
-        $estudiante = Estudiante::find($id);
-        $estudiante->name = $request->input('name');
-        $estudiante->username = $request->input('username');
-        $estudiante->password = $request->input('password');
+        $estudiante = Estudiante::find($codigo);
+        $estudiante->name = $request->input('nombres');
+        $estudiante->username = $request->input('apellidos');
         $estudiante->save();
         return response(json_encode([
-            "data" => "Registro actualizado"
+            "data" => "Estudiante actualizado"
         ]));
     }
 
@@ -78,17 +77,17 @@ class EstudianteController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($codigo)
     {
         $estudiante = Estudiante::find($id);
         if (empty($estudiante)) {
             return response(json_encode([
-                "data" => "El usuario no existe"
+                "data" => "El Estudiante no existe"
             ]), 404);
         }
         $estudiante->delete();
         return response(json_encode([
-            "data" => "Registro eliminado"
+            "data" => "Estudiante eliminado"
         ]));
     }
 }
