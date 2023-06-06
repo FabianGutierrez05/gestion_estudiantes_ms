@@ -79,7 +79,7 @@ class EstudianteController extends Controller
      */
     public function destroy($codigo)
     {
-        $estudiante = Estudiante::find($id);
+        $estudiante = Estudiante::find($codigo);
         if (empty($estudiante)) {
             return response(json_encode([
                 "data" => "El Estudiante no existe"
